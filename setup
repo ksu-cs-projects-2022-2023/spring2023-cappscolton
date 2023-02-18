@@ -1,0 +1,2 @@
+npm i --save-dev @types/crypto-js
+npm i axios
