@@ -9,7 +9,10 @@ const config = {
 
 	kit: {
 		adapter: adapter()
-	}
+	},
+	csrf: {
+		checkOrigin: false,
+	} // todo: remove this
 };
 
 export default config;
