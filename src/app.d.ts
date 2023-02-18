@@ -7,7 +7,7 @@ declare global {
 		// interface PageData {}
 		interface Platform {
 			env: {
-				COUNTER: DurableObjectNamespace;
+				KV_CACHE: KVNamespace;
 			};
 			context: {
 				waitUntil(promise: Promise<any>): void;
