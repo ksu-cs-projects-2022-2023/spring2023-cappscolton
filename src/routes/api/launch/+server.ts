@@ -3,7 +3,7 @@ import type { RequestHandler } from "./$types";
 import { OAuth1Signature } from './oauth1-signature.js';
 
 export const POST = (async ({ request, url, platform }) => {
-  var base_platform_url = "sk-cloudflare-test.pages.dev";
+  var base_platform_url = "spring2023-cappscolton.pages.dev";
   var codio_lti_url = `https://apollo.codio.com/lti/7f5a917c-79c4-4c15-85c8-f0c137e22cd4`;
 
   const custom_params = {
