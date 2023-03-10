@@ -1,2 +1,1 @@
-npm i --save-dev @types/crypto-js
-npm i axios
+yarn add crypto-js
