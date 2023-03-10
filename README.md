@@ -1,3 +1,14 @@
+# Requirements:
+
+https://kit.svelte.dev/docs/adapter-cloudflare
+
+At least these packages:
+"crypto-js": "^4.1.1",
+"oauth-1.0a": "^2.2.6",
+"querystring": "^0.2.1",
+
+yarn / npm
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
