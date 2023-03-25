@@ -10,7 +10,7 @@
     http://www.imsglobal.org/xsd/imslticp_v1p0 http://www.imsglobal.org/xsd/lti/ltiv1p0/imslticp_v1p0.xsd">
     <blti:title>ELA</blti:title>
     <blti:description>ELA Canvas Integration</blti:description>
-    <blti:launch_url>https://spring2023-cappscolton.pages.dev/api/launch</blti:launch_url>
+    <blti:launch_url>https://spring2023-cappscolton.pages.dev/api/tp/launch</blti:launch_url>
     <blti:extensions platform="canvas.instructure.com">
       <lticm:property name="privacy_level">public</lticm:property>
       <lticm:options name="course_navigation">

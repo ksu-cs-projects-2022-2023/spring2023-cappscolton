@@ -8,11 +8,11 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		csrf: {
+			checkOrigin: false,
+		} // todo: remove this
 	},
-	csrf: {
-		checkOrigin: false,
-	} // todo: remove this
 };
 
 export default config;
