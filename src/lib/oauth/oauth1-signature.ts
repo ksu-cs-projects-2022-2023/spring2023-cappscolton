@@ -1,13 +1,11 @@
-import OAuth from "oauth-1.0a";
-import hmacSHA1 from "crypto-js/hmac-sha512";
-import Base64, { stringify } from 'crypto-js/enc-base64';
-
+import hmacSHA1 from "crypto-js/hmac-sha1";
+import Base64 from 'crypto-js/enc-base64';
 import { makeQueryParams, getRandom, getBaseString } from './utils';
 
 const MAX_NONCE = 1000000;
 
 export function OAuth1Signature({ oauth_consumer_key,
-	oauth_shared_secret, method = 'GET',
+	oauth_shared_secret, method = 'POST',
 	query_params = {},
 	url = '',
 	oauth_timestamp = Math.round(Date.now() / 1000), // current unix timestamp,
@@ -39,30 +37,15 @@ export function OAuth1Signature({ oauth_consumer_key,
 
 	const encodedParams = makeQueryParams(oauthParams);
 	const baseString = getBaseString(url, method, encodedParams);
+	//console.log(`baseString: ${baseString}`);
 
-	const oauthSignature = hmacSHA1(baseString, oauth_shared_secret).toString(Base64);
+	const oauthSignature = hmacSHA1(baseString, `${oauth_shared_secret}&`).toString(Base64);
 
 	const signedParams: { [name: string]: any } = {
 		...oauthParams,
 		oauth_signature: oauthSignature,
+		url: url
 	};
 
-	return {
-		params: signedParams,
-		signature: oauthSignature,
-	};
+	return signedParams;
 }
-
-// different oauth lib
-// const signature = new OAuth({
-//   consumer: {
-//     key: "9e148d82-db3b-4669-b38b-a103624600b6",
-//     secret: await platform?.env.KV_CACHE.get("LTI_CLIENT_SECRET"),
-//   },
-//   signature_method: "HMAC-SHA1",
-//   hash_function(base_string, key) {
-//     return hmacSHA512(base_string, key).toString(CryptoJS.enc.Base64);
-//   },
-// });
-
-// heavily modified from https://github.com/fernando-mf/oauth1-signature to work in ES Module with TS
