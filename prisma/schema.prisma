@@ -12,8 +12,8 @@ generator dbml {
 // TODO: Fix prod env URL not working
 datasource db {
   provider  = "mongodb"
-  url       = "prisma://aws-us-east-1.prisma-data.com/?api_key=pSrNaG_qXxc01GlDb9XvRRJfi3SsNJJW5NRrLyIlFE71pQkK36g62cYgfzp6pUVd"
-  directUrl = "mongodb+srv://cjcapps:WT7HFyHmIdfSQ5ED@ela-platform.gyzvs96.mongodb.net/Log?retryWrites=true&w=majority"
+  url       = ""
+  directUrl = ""
 }
 
 model Log {
