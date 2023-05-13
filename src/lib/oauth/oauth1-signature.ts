@@ -36,7 +36,9 @@ export function OAuth1Signature({
 
   const encodedParams = makeQueryParams(oauthParams);
   const baseString = getBaseString(url, method, encodedParams);
-  console.log(`baseString: ${baseString}`);
+
+  // BOOKMARK: this is for testing OAuth Signature problems. Uncomment this and compare the logged base string to the one provided by Saltire.
+  // console.log(`baseString: ${baseString}`);
 
   const oauthSignature = hmacSHA1(
     baseString,
