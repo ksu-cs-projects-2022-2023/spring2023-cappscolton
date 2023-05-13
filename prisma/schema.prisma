@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+// TODO: Fix prod env URL not working
+datasource db {
+  provider  = "mongodb"
+  url       = "prisma://aws-us-east-1.prisma-data.com/?api_key=pSrNaG_qXxc01GlDb9XvRRJfi3SsNJJW5NRrLyIlFE71pQkK36g62cYgfzp6pUVd"
+  directUrl = "mongodb+srv://cjcapps:WT7HFyHmIdfSQ5ED@ela-platform.gyzvs96.mongodb.net/Log?retryWrites=true&w=majority"
+}
+
+model Log {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  level   Level
+  message String
+  meta    Json
+}
+
+enum Level {
+  Info
+  Warn
+  Error
+}
+
+model Student {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  firstName String
+  lastName  String
+  lmsUserId String @unique
+  email     String @unique
+
+  courseIds  String[]          @db.ObjectId
+  courses    Course[]          @relation(fields: [courseIds], references: [id])
+  activities StudentActivity[]
+  mastery    Mastery[]
+}
+
+model Course {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  lmsContextId String @unique
+
+  studentIds String[]  @db.ObjectId
+  students   Student[] @relation(fields: [studentIds], references: [id])
+}
+
+model Instructor {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+}
+
+model ToolProvider {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  name        String     @unique
+  oauthSecret String
+  oauthKey    String
+  Activity    Activity[]
+}
+
+model Equivalency {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  concept        String @unique
+  masteryFormula String
+
+  activities Activity[]
+  Mastery    Mastery[]
+}
+
+model Activity {
+  id                   String @id @default(auto()) @map("_id") @db.ObjectId
+  ltiUrl               String @unique
+  correctnessThreshold Float
+  name                 String @unique
+
+  toolProviderId  String            @db.ObjectId
+  toolProvider    ToolProvider      @relation(fields: [toolProviderId], references: [id])
+  equivalency     Equivalency?      @relation(fields: [equivalencyId], references: [id])
+  equivalencyId   String?           @db.ObjectId
+  studentActivity StudentActivity[]
+}
+
+model StudentActivity {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  student    Student   @relation(fields: [studentId], references: [id])
+  studentId  String    @db.ObjectId
+  activity   Activity  @relation(fields: [activityId], references: [id])
+  activityId String    @db.ObjectId
+  attempts   Attempt[]
+}
+
+model Attempt {
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  correctness       Float
+  timestamp         DateTime        @unique
+  studentActivity   StudentActivity @relation(fields: [studentActivityId], references: [id])
+  studentActivityId String          @db.ObjectId
+}
+
+model Mastery {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  student       Student     @relation(fields: [studentId], references: [id])
+  studentId     String      @db.ObjectId
+  equivalency   Equivalency @relation(fields: [equivalencyId], references: [id], onDelete: Cascade)
+  equivalencyId String      @db.ObjectId
+  time          DateTime    @unique
+  percentage    Float
+}
