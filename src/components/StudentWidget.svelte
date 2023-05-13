@@ -1,3 +1,8 @@
+<script>
+  import RadialMastery from "./RadialMastery.svelte";
+  import RowComponent from "./RowComponent.svelte";
+</script>
+
 <div class="overflow-x-auto w-full">
   <table class="table w-full">
     <!-- head -->
@@ -10,7 +15,7 @@
         </th>
         <th>Name</th>
         <th>Mastery Stage</th>
-        <th>Time Spent</th>
+        <th>Mastery</th>
         <th />
       </tr>
     </thead>
@@ -26,14 +31,11 @@
           <div class="flex items-center space-x-3">
             <div class="avatar">
               <div class="mask mask-squircle w-12 h-12">
-                <img
-                  src="/tailwind-css-component-profile-2@56w.png"
-                  alt="Avatar Tailwind CSS Component"
-                />
+                <img src="" alt="Avatar Tailwind CSS Component" />
               </div>
             </div>
             <div>
-              <div class="font-bold">Test Student 1</div>
+              <div class="font-bold">Colton Capps</div>
             </div>
           </div>
         </td>
@@ -42,7 +44,9 @@
           <br />
           <span class="badge badge-ghost badge-sm">Student</span>
         </td>
-        <td>0:0</td>
+        <td>
+          <RadialMastery value="50" />
+        </td>
         <th>
           <button class="btn btn-ghost btn-xs">Report</button>
         </th>
@@ -58,10 +62,7 @@
           <div class="flex items-center space-x-3">
             <div class="avatar">
               <div class="mask mask-squircle w-12 h-12">
-                <img
-                  src="/tailwind-css-component-profile-3@56w.png"
-                  alt="Avatar Tailwind CSS Component"
-                />
+                <img src="" alt="Avatar Tailwind CSS Component" />
               </div>
             </div>
             <div>
@@ -74,7 +75,9 @@
           <br />
           <span class="badge badge-ghost badge-sm">Student</span>
         </td>
-        <td>0:0</td>
+        <td>
+          <RadialMastery value="50" />
+        </td>
         <th>
           <button class="btn btn-ghost btn-xs">Report</button>
         </th>
@@ -90,10 +93,7 @@
           <div class="flex items-center space-x-3">
             <div class="avatar">
               <div class="mask mask-squircle w-12 h-12">
-                <img
-                  src="/tailwind-css-component-profile-4@56w.png"
-                  alt="Avatar Tailwind CSS Component"
-                />
+                <img src="" alt="Avatar Tailwind CSS Component" />
               </div>
             </div>
             <div>
@@ -106,7 +106,9 @@
           <br />
           <span class="badge badge-ghost badge-sm">Student</span>
         </td>
-        <td>0:0</td>
+        <td>
+          <RadialMastery value="50" />
+        </td>
         <th>
           <button class="btn btn-ghost btn-xs">Report</button>
         </th>
@@ -122,15 +124,12 @@
           <div class="flex items-center space-x-3">
             <div class="avatar">
               <div class="mask mask-squircle w-12 h-12">
-                <img
-                  src="/tailwind-css-component-profile-5@56w.png"
-                  alt="Avatar Tailwind CSS Component"
-                />
+                <img src="" alt="Avatar Tailwind CSS Component" />
               </div>
             </div>
             <div>
               <div class="font-bold">Test Student 4</div>
-              <div class="text-sm opacity-50">Brazil</div>
+              <div class="text-sm opacity-50">K-State</div>
             </div>
           </div>
         </td>
@@ -139,11 +138,20 @@
           <br />
           <span class="badge badge-ghost badge-sm">Student</span>
         </td>
-        <td>0:0</td>
+        <td>
+          <RadialMastery value="50" />
+        </td>
         <th>
           <button class="btn btn-ghost btn-xs">Report</button>
         </th>
       </tr>
+
+      <!-- <RowComponent
+        name="Colton Capps"
+        n={3}
+        mastery={30}
+        masteryThreshold={90}
+      /> -->
     </tbody>
     <!-- foot -->
     <tfoot>
@@ -151,7 +159,7 @@
         <th />
         <th>Name</th>
         <th>Mastery Stage</th>
-        <th>Time Spent</th>
+        <th>Mastery</th>
         <th />
       </tr>
     </tfoot>

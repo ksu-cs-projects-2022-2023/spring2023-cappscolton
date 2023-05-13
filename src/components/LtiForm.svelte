@@ -1,7 +1,5 @@
 <script>
   import LtiParam from "./LtiParam.svelte";
-
-  /** @type {import('./$types').PageData} */
   export let endpoint = "";
   export let parameters = [{ param_name: "", value: "" }];
 </script>
