@@ -11,7 +11,7 @@
 
 ### 1.0
 
-- [] Webapp communicates with 2 or more external activity providers
+- [ ] Webapp communicates with 2 or more external activity providers
 - [x] Webapp stores and tracks individual student data gathered from ELA participation
 - [x] Webapp has a teacher-only UI section
 - [x] Platform provides a basic method of measuring Mastery Learning
