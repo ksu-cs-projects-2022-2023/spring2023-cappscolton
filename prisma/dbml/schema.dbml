@@ -1,0 +1,113 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table Log {
+  id String [pk]
+  level Level [not null]
+  message String [not null]
+  meta Json [not null]
+}
+
+Table Student {
+  id String [pk]
+  firstName String [not null]
+  lastName String [not null]
+  lmsUserId String [unique, not null]
+  email String [unique, not null]
+  courseIds String[] [not null]
+  courses Course [not null]
+  activities StudentActivity [not null]
+  mastery Mastery [not null]
+}
+
+Table Course {
+  id String [pk]
+  lmsContextId String [unique, not null]
+  studentIds String[] [not null]
+  students Student [not null]
+}
+
+Table Instructor {
+  id String [pk]
+  name String [not null]
+}
+
+Table ToolProvider {
+  id String [pk]
+  name String [unique, not null]
+  oauthSecret String [not null]
+  oauthKey String [not null]
+  Activity Activity [not null]
+}
+
+Table Equivalency {
+  id String [pk]
+  concept String [unique, not null]
+  masteryFormula String [not null]
+  activities Activity [not null]
+  Mastery Mastery [not null]
+}
+
+Table Activity {
+  id String [pk]
+  ltiUrl String [unique, not null]
+  correctnessThreshold Float [not null]
+  name String [unique, not null]
+  toolProviderId String [not null]
+  toolProvider ToolProvider [not null]
+  equivalency Equivalency
+  equivalencyId String
+  studentActivity StudentActivity [not null]
+}
+
+Table StudentActivity {
+  id String [pk]
+  student Student [not null]
+  studentId String [not null]
+  activity Activity [not null]
+  activityId String [not null]
+  attempts Attempt [not null]
+}
+
+Table Attempt {
+  id String [pk]
+  correctness Float [not null]
+  timestamp DateTime [unique, not null]
+  studentActivity StudentActivity [not null]
+  studentActivityId String [not null]
+}
+
+Table Mastery {
+  id String [pk]
+  student Student [not null]
+  studentId String [not null]
+  equivalency Equivalency [not null]
+  equivalencyId String [not null]
+  time DateTime [unique, not null]
+  percentage Float [not null]
+}
+
+Enum Level {
+  Info
+  Warn
+  Error
+}
+
+Ref: Student.courseIds > Course.id
+
+Ref: Course.studentIds > Student.id
+
+Ref: Activity.toolProviderId > ToolProvider.id
+
+Ref: Activity.equivalencyId > Equivalency.id
+
+Ref: StudentActivity.studentId > Student.id
+
+Ref: StudentActivity.activityId > Activity.id
+
+Ref: Attempt.studentActivityId > StudentActivity.id
+
+Ref: Mastery.studentId > Student.id
+
+Ref: Mastery.equivalencyId > Equivalency.id [delete: Cascade]
