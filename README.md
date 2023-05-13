@@ -20,8 +20,8 @@
 
 - [x] Platform provides a research-backed method of measuring Mastery Learning
 - [x] Webapp has a unifying interface, allowing easy integration of new ELA sets
-- Webapp has a polished UI
-- (Aborted) Webapp consistently determines equivalency between activities using metadata
+- [ ] Webapp has a polished UI
+- [ ] (Aborted) Webapp consistently determines equivalency between activities using metadata
 
 &nbsp;
 
