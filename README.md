@@ -2,6 +2,9 @@
 
 ## **Project Objectives**
 
+This repo showcases how much / little I could learn in one semester. There is more to learn, check out my continuation @ cappscolton/ela-platform
+
+
 ### MVP
 
 - [x] webapp has a basic UI
